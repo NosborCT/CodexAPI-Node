@@ -1,0 +1,60 @@
+type File {
+  id: ID
+  type: String
+  title: String
+  name: String
+  url: String
+  alt: String
+  width: Float
+  height: Float
+  size: Float
+  time: Float
+  createdBy: User
+  updateBy: User
+  createdAt: Float
+  updateAt: Float
+  bubbleURL: String
+}
+
+type FilesResult {
+  files: [File]
+  totalCount: Float
+}
+
+input FileInput {
+  type: String
+  name: String
+  title: String
+  url: String
+  alt: String
+  mineType: String
+  width: Float
+  height: Float
+  size: Float
+  time: Float
+  createdAt: Float
+  updateAt: Float
+  bubbleURL: String
+}
+
+input FileFilter {
+  search: String
+  alt: String
+  name: String
+  title: String
+  type: String
+}
+
+
+
+type Query {
+  file(id: ID!) : File
+  files(skip:Float,limit:Float, sort: String, sortType: String, filter: FileFilter): FilesResult
+  filesNotUsed: FilesResult
+}
+
+type Mutation {
+  createFile(data: FileInput): File
+  updateFile(id: ID!, data: FileInput) : File
+  deleteFile(id: ID!): File
+}

@@ -1,0 +1,86 @@
+type Report {
+    id: ID
+    user: User
+    title: String
+    description: String
+    status: ReportStatus
+    priority: ReportPriority
+    departament: ReportDepartament
+    reportFiles: [File]
+    createdAt: Float
+    updatedAt: Float
+    reportComments: [ReportComment]
+}
+
+input ReportInput {
+    user: [ID]!
+    title: String
+    description: String
+    departament: ReportDepartament
+    priority: ReportPriority
+    status: ReportStatus
+    reportFiles: [ID]
+    reportComments: [ID]
+}
+
+type ReportComment {
+    id: ID!
+    user: User!
+    message: String
+}
+
+input ReportCommentInput {
+    user: ID!
+    message: String
+}
+
+enum ReportDepartament {
+    TI
+    Administrativo
+}
+
+enum ReportStatus {
+    Pendente
+    Em Progresso
+    Resolvido
+    Fechado
+}
+
+enum ReportPriority {
+    Baixo
+    Medio
+    Resolvido
+    Fechado
+}
+
+type ReportsResult {
+    report: [Report]
+    totalCount: Float
+}
+
+input ReportsFilter {
+    title: String
+    description: String
+    departament: ReportDepartament
+    priority: ReportPriority
+    status: ReportStatus
+}
+
+type Query {
+    reportsByUser(userId: String, skip: Float, limit: Float, sort: String, sortType: String, filter: ReportsFilter): ReportsResult
+    reports(skip: Float, limit: Float, sort: String, sortType: String, filter: ReportsFilter): ReportsResult
+    report: Report
+    reportComments: [ReportComment]
+    reportComment: ReportComment
+}
+
+type Mutation {
+    createReport(data: ReportInput): Report
+    updateReport(id: ID!, data: ReportInput): Report
+    deleteReport(id: ID!): Report
+    createReportComment(data: ReportCommentInput): ReportComment
+    updateReportComment(id: ID!, data: ReportCommentInput): ReportComment
+    deleteReportComment(id: ID!): ReportComment
+    deleteAllReports: Float
+    deleteAllReportComments: Float
+}

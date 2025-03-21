@@ -1,0 +1,60 @@
+type Assessment {
+    id: ID
+    user: User!
+    evaluations: [Evaluation]
+    createdAt: Float
+    createdBy: User
+    updatedBy: User
+    updatedAt: Float
+}
+
+type Evaluation {
+    type: EvaluationType
+    value: Float
+}
+
+type AssessmentsResult {
+    assessments: [Assessment]
+    totalCount: Float
+}
+
+type EvaluationAverage {
+    type: EvaluationType
+    average: Float
+}
+
+enum EvaluationType {
+    NPS
+    QUALITY
+    SUPPORT
+    EDUCATIONAL_MATERIAL
+    USABILITY
+}
+
+input EvaluationInput {
+    type: EvaluationType
+    value: Float
+}
+
+input AssessmentInput {
+    user: ID!
+    evaluations: [EvaluationInput]
+}
+
+input AssessmentFilter {
+    userName: String
+}
+
+type Query {
+    assessments(skip: Float, limit: Float, sort: String, sortType: String, filter: AssessmentFilter): AssessmentsResult
+    assessment(id: ID!): Assessment
+    getTotalAssessmentAverage: Float
+    getTypeAssessmentAverage: [EvaluationAverage]
+}
+
+type Mutation {
+    createAssessment(data: AssessmentInput): Assessment
+    updateAssessment(id: ID!, data: AssessmentInput): Assessment
+    deleteAssessment(id: ID!): Assessment
+    deleteAllAssessments: Assessment
+}

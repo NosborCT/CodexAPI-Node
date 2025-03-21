@@ -1,0 +1,141 @@
+type User {
+  id: ID
+  name: String
+  cpf: String
+  lastActive: Float
+  isActive: Boolean
+  phone: String
+  token: String
+  address: String
+  neighborhood: String
+  cep: String
+  city: String
+  state: String
+  role: Roles
+  email: String
+  password: String
+  oldPassword: String
+  userInformation: UserInformation
+  createdAt: Float
+  createdBy: User
+  updateBy: User
+  updateAt: Float
+  bubbleId: String
+}
+
+type UserInformation {
+  configuration: Configuration
+}
+
+type Trial {
+  onTrial: Boolean
+  dateStart: Float
+  dateEnd: Float
+}
+
+type Configuration {
+  darkMode: Boolean
+  emailNotification: Boolean
+  terms: Terms
+  evaluation: Boolean
+}
+
+type Terms {
+  dateTerm: Float
+  acceptTerm: Boolean
+}
+
+type UsersResult {
+  users: [User]
+  totalCount: Float
+}
+
+type UserLogin {
+  token: String
+}
+
+enum Roles {
+  Admin
+  Aluno
+  Professor
+  Funcionario
+  Mentor
+}
+
+input UserFilter {
+  id: String
+  name: String
+  cpf: String
+  phone: String
+  email: String
+  cep: String
+  role: Roles
+  isActive: Boolean
+}
+
+input UserInput {
+  name: String
+  cpf: String
+  phone: String
+  email: String
+  isActive: Boolean
+  city: String
+  address: String
+  neighborhood: String
+  cep: String
+  password: String
+  role: Roles
+  comissao: Float
+  image: ID
+  imageLink: String
+  bubbleId: String
+  createdAt: Float
+  updateAt: Float
+  configuration: ConfigurationInput
+  onTrial: Boolean
+}
+
+input ConfigurationInput {
+  darkMode: Boolean
+  emailNotification: Boolean
+  terms: TermsInput
+  evaluation: Boolean
+}
+
+input TermsInput {
+  dateTerm: Float
+  acceptTerm: Boolean
+}
+
+input LoginUserInput {
+  email: String
+  password: String
+}
+
+type Query {
+  user(id: ID!): User
+  users(
+    skip: Float
+    limit: Float
+    sort: String
+    sortType: String
+    filter: UserFilter
+  ): UsersResult
+}
+
+type Mutation {
+  updateUser(id: ID!, data: UserInput): User
+  updateUserPassword(
+    id: ID!
+    newPassword: String
+    currentPassword: String
+  ): User
+  updateUserEmail(id: ID!, newEmail: String, currentPassword: String): User
+  resetPwdMail(email: String!): Boolean
+  createUser(data: UserInput): User
+  deleteUser(id: ID!): User
+  loginUser(data: LoginUserInput): UserLogin
+  loginWithGoogle(creds: String!): UserLogin
+  loginHowUser(data: LoginUserInput): UserLogin
+  deleteAllUsers: Float
+}

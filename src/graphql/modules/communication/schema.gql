@@ -1,0 +1,47 @@
+type Communication {
+  id: ID
+  roles: [String]
+  description: String
+  title: String
+  createdAt: Float
+  createdBy: User
+  updateBy: User
+  updateAt: Float
+  bubbleId: String
+  wasSent: Boolean
+  sentAt: Float
+}
+
+input CommunicationInput {
+  roles: [String]
+  description: String
+  title: String
+  createdAt: Float
+  updateAt: Float
+  bubbleId: String
+  wasSent: Boolean
+  sentAt: Float
+}
+
+type CommunicationsResult {
+  communications: [Communication]
+  totalCount: Float
+}
+
+type Query {
+  communication(id: ID!): Communication
+  communications(
+    skip: Float
+    limit: Float
+    sort: String
+    sortType: String
+    filter: CommunicationInput): CommunicationsResult
+}
+
+type Mutation {
+  createCommunication(data: CommunicationInput): Communication
+  sendCommunication(id: ID!): Communication
+  updateCommunication(id: ID!, data: CommunicationInput): Communication
+  deleteCommunication(id: ID!): Communication
+  deleteAllCommunication: Float
+}

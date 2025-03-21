@@ -1,0 +1,30 @@
+type Comment {
+  id: ID
+  text: String
+  user: User
+  createdAt: Float
+  createdBy: User
+  updateBy: User
+  updateAt: Float
+  bubbleId: String
+}
+
+input CommentInput {
+  text: String
+  user: ID
+  createdAt: Float
+  updateAt: Float
+  bubbleId: String
+}
+
+type Query {
+  comment(id: ID!): Comment
+  questionsComments: [Comment]
+}
+
+type Mutation {
+  createComment(data: CommentInput): Comment
+  updateComment(id: ID!, data: CommentInput): Comment
+  deleteComment(id: ID!): Comment
+  deleteAllComments: Float
+}

@@ -1,0 +1,40 @@
+type FavoriteBook {
+    id: ID
+    user: User
+    createdAt: Float
+    createdBy: User
+    updateBy: User
+    updateAt: Float
+    bubbleId: String
+}
+
+type FavoriteBookResult {
+    FavoriteBooks: [FavoriteBook]
+    totalCount: Float
+}
+
+type CourseWithFavoriteId {
+  FavoriteBookId: ID
+}
+
+type FavoriteBooksByUserResult {
+  coursesWithFavoriteIds: [CourseWithFavoriteId]
+  totalCount: Float
+}
+
+input FavoriteBookInput {
+  user: ID
+  bubbleId: String
+}
+
+type Query {
+    FavoriteBook(id: ID!): FavoriteBook
+}
+
+type Mutation {
+  createFavoriteBook(data: FavoriteBookInput): FavoriteBook
+  updateFavoriteBook(FavoriteBookId: ID!, data: FavoriteBookInput): FavoriteBook
+  deleteFavoriteBook(id: ID!): FavoriteBook
+  deleteAllFavoriteBooks: Float
+  deleteAllFavoriteBooksByUser(userId: ID!): Float
+}

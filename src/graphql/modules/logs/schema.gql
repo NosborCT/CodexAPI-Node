@@ -1,0 +1,48 @@
+type Log {
+    id: ID
+    action: String
+    data: String
+    table: String
+    createdAt: Float
+    createdBy: User
+    updateBy: User
+    updateAt: Float
+}
+
+type LogsResult {
+    logs: [Log]
+    totalCount: Float
+}
+
+input LogInput {
+    action: String
+    data: String
+    table: String
+    createdAt: Float
+    updateAt: Float
+}
+
+input LogFilter {
+    email: String
+    startDate: Float
+    endDate: Float
+    action: String
+    table: String
+}
+
+type Query {
+    logs(skip: Float, limit: Float, sort: String, sortType: String, filter: LogFilter): LogsResult
+    log(id: ID!): Log
+}
+
+type Mutation {
+    createLog(data: LogInput): Log
+    updateLog(id: ID!, data: LogInput): Log
+    deleteLog(id: ID!): Log
+}
+
+type Subscription {
+    logCreated: Log
+    logUpdated: Log
+    logDeleted: Log
+}

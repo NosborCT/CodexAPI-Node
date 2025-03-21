@@ -1,0 +1,18 @@
+type AuthProvider {
+  uId: String
+}
+
+type ConfigurationProvider {
+  d: String
+  en: String
+  t: String
+  n: String
+  em: String
+  e: String
+  m: String
+}
+
+type Query {
+  authProvider: AuthProvider
+  configurationProvider: ConfigurationProvider
+}
