@@ -1,0 +1,8 @@
+#Node Modules
+node_modules/
+
+#ENV
+.env
+yarn.lock
+package-lock.json
+isntal

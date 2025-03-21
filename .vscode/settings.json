@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/7ffcaad1-1b2f-4fa9-b73a-1e997e22b9f9/resourceGroups/Magistrar/providers/Microsoft.Web/sites/portalmagsitrarapi",
+    "appService.deploySubpath": "."
+}
