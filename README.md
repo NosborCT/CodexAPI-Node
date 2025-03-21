@@ -1,6 +1,5 @@
 # 📘 API Codex App
 
-
 ---
 
 ## 🚀 Tecnologias Utilizadas
@@ -28,7 +27,7 @@ A API já conta com diversos módulos funcionais para gerenciamento de: . Abaixo
 1️⃣ **Clonar o repositório**
 
 ```sh
-git clone https://github.com/magistrareducacional/portal-api.git
+git clone https://github.com/NosborCT/CodexAPI-Node.git
 ```
 
 2️⃣ **Acessar a pasta do projeto**
@@ -78,5 +77,3 @@ http://localhost:4000/graphql
 💡 Para mais detalhes, consulte a documentação interna dos módulos específicos.
 
 ---
-# CodexAPIGQL
-# CodexApi-GQL

@@ -13,7 +13,7 @@ const userSchema = new Schema({
   cep: { type: String },
   city: { type: String },
   state: { type: String },
-  // role: { type: String, enum: ["Aluno", "Professor", "Funcionario", "Mentor"] },
+  role: { type: String, enum: ["Aluno", "Professor", "Funcionario", "Mentor"] },
   email: { type: String, required: true },
   password: { type: String, required: true },
   oldPassword: { type: String },
