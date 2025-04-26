@@ -37,7 +37,7 @@
     "jwt-decode": "^4.0.0",
     "lodash": "^4.17.21",
     "mercadopago": "^2.3.0",
-    "mongodb": "^6.15.0",
+    "mongodb": "^6.16.0",
     "mongoose": "^8.2.1",
     "paseto": "^3.1.4",
     "ws": "^8.13.0"

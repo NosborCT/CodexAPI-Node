@@ -11,7 +11,7 @@ app.use(express.json());
 
 async function startServer() {
   await startApolloServer(app, httpServer);
-  const port = process.env.PORT || 4001;
+  const port = process.env.REACT_APP_SERVER_PORT || 4001;
   await new Promise<void>((resolve) =>
     httpServer.listen(port, () => resolve())
   );
